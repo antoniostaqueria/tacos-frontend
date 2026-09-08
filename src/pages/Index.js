@@ -5,15 +5,16 @@ import clock from '../assets/clock.svg';
 import geo from '../assets/geo-alt.svg';
 import card from '../assets/credit-card.svg';
 
-// Where the "What cloud am I on?" link points. Set per environment via
-// REACT_APP_WHEREAMI_URL (read at server start, like REACT_APP_API_DOMAIN_NAME).
+// Where the "What cloud am I on?" link points. The detection app is served at
+// /cloud-home on this same host, so the default is relative: it works on the
+// vanity domain and on cluster hostnames alike, and never sends a visitor to a
+// different domain mid-demo. Override with REACT_APP_WHEREAMI_URL if needed
+// (read at server start, like REACT_APP_API_DOMAIN_NAME).
 // "Find Us" points at the real Sombrero Galaxy (Messier 104) — NASA's Hubble page.
 const VISIT_URL =
     "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-104/";
 
-const WHEREAMI_URL =
-    process.env.REACT_APP_WHEREAMI_URL ||
-    "https://stage-cloud-migrate-demo.apps.nonprod.antoniostaqueria.onglueops.com";
+const WHEREAMI_URL = process.env.REACT_APP_WHEREAMI_URL || "/cloud-home";
 
 class Index extends React.Component {
     render() {
