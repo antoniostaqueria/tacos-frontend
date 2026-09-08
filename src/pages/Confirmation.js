@@ -1,12 +1,10 @@
 import React from "react";
 import withRouter from "../contexts/routing";
 import "./Confirmation.css";
-import arrowLeft from "../assets/arrow-left.svg"
-import { formatMinutesTime } from "../utils/utils";
 
 class Confirmation extends React.Component {
 	render() {
-		const { orderId, deliveryTime } = this.props.location.state;
+		const { orderId } = this.props.location.state;
 
 		return (
 			<>
