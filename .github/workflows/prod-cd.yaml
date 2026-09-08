@@ -4,14 +4,19 @@ on:
   release:
     types:
       - created
-      
+
 jobs:
   cd:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # one PR per environment in deployment-configurations; merging a PR
+        # rolls the release out to that cluster independently
+        env: [prod, us-west-2-aws, ch-gva-2-exoscale]
     steps:
       - uses: GlueOps/github-actions-bump-deployment-tag@5505ab25583ca128e85bbaba0c76e52fc75b8118 # v1.0.0
         with:
-          ENV: prod
+          ENV: ${{ matrix.env }}
           CREATE_PR: 'true'
           app-id: ${{ vars.GLUEOPS_DEPLOYMENT_APP_ID }}
           private-key: ${{ secrets.GLUEOPS_DEPLOYMENT_APP_PRIVATE_KEY }}
