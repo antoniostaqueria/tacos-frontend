@@ -3,7 +3,7 @@ name: Prod CD
 on:
   release:
     types:
-      - created
+      - published
 
 jobs:
   cd:
